@@ -1,0 +1,18 @@
+@import "reset.css";
+@import "https://fonts.googleapis.com/css?family=Montserrat";
+
+.click {
+  position: absolute;
+  top: 45vh;
+  left: 40vw;
+  font-family: Montserrat;
+  text-align: center;
+  text-decoration: none;
+  color: #000000;
+  font-size: 5vw;
+  background-color: #FFD400;
+  border-radius: 10px;
+  width: 20vw;
+  height: 10vh;
+
+}
