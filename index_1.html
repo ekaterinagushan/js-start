@@ -3,7 +3,8 @@
   <head>
     <meta charset="utf-8">
     <title></title>
-  </head>
+
+
   <style>
       html, body{
         width: 100%;
@@ -82,52 +83,64 @@
     }
 
   </style>
-  <body>
+</head>
+<body>
 
-    <div id="search-box">
-        <input type="text" placeholder=" " /><span></span>
-    </div>
-    <pre id="search"></pre>
-
-    <script>
-
-
-    'use strict'
-    var searchBox = document.querySelectorAll('.search-box input[type="text"] + span')
-
-    searchBox.forEach((elm) => {
-    elm.addEventListener('click', () => {
-    elm.previousElementSibling.value = '';
-    })
-   })
-
-   function writeTextByJS(searchBox){
-
-  var ele = document.getElementById(searchBox),
-      txt = text.join("").split("");
-
-      var interval = setInterval(function(){
-
-        if(!txt[0]){
-
-          return clearInterval(interval);
-        };
-
-        ele.innerHTML += txt.shift();
-      }, speed != undefined ? speed : 100);
-
-      return false;
-     // };
-
-     writeTextByJS(
-      "demo",
-      [
-        "магазин качеств"
-      ]
-    );
+  <div id="search-box">
+      <input type="text" placeholder=" " /><span></span>
+  </div>
+  <script>
 
 
-</script>
+  'use strict'
+  var searchBox = document.querySelectorAll('.search-box input[type="text"] + span')
+
+  searchBox.forEach((elm) => {
+  elm.addEventListener('click', () => {
+  elm.previousElementSibling.value = '';
+  })
+ })
+  </script>
+
+
+
+  <div class='content'></div>
+  <script src="./jquery.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+     var p = $('.content');
+     p.text('');
+
+     inc(p);
+    });
+
+    var text = `магазин качеств`;
+
+    var i = 0;
+    var j = 0;
+
+    function inc(p) {
+      var interval = .12;
+      var array = text.split(/[\{\}]/); // Split on embraces
+
+      if (i < array.length) {
+        const character = array[i].charAt(j) === '<' ? '<br/>' : array[i].charAt(j)
+        p.append(character);
+
+        console.log(array[i].charAt(j))
+
+        if (j == array[i].length -1 && typeof array[i + 1] !== "undefined") {
+          interval = array[i + 1];
+          i += 2;
+          j = 0;
+        }
+
+        j++;
+        setTimeout(function () { inc(p); }, interval*500);
+      }
+    }
+
+  </script>
 
   </body>
 
